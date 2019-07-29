@@ -110,8 +110,11 @@ def brand_color_convert(beads: [Bead]):
     else:
         for i in range(len(matches)):
             bead, dist = matches[i]
-            print("%d.: (%-10s) (Distance: %3d) %20s [%7s]" % (i+1, bead.brand.capitalize(), dist,
-                                                               bead.name.capitalize(), bead.code.upper()))
+            # 441.67295593 is not magic it is derived from the maximum 3d color space distance,
+            # that being the square root of ((255^3) * 3)
+            likeness = ((441.67295593 - dist)/441.67295593) * 100.0
+            print("%d.: (%-10s) (Likeness: %2.2f%%) %20s [%7s]" % (i+1, bead.brand.capitalize(), likeness,
+                                                                 bead.name.capitalize(), bead.code.upper()))
     print("\n")
 
 
