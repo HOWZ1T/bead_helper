@@ -5,7 +5,7 @@ import os
 
 from data_manager import read_bead_data
 from objects import Bead
-from bead_utils import approximate_color
+from bead_utils import approximate_color, approximate_colors
 
 
 def handle_menu_option_select(valid_range):
@@ -103,17 +103,16 @@ def brand_color_convert(beads: [Bead]):
                 print("invalid brand choice!\n")
 
     # do the actual conversion based on input from user
-    new_bead, dist = approximate_color(beads, cur_bead.rgb, new_brand)
-    if new_bead is None:
+    matches = approximate_colors(beads, cur_bead.rgb, new_brand)
+    if len(matches) == 0:
         print("could not convert the bead: %s [%s] from brand: %s to the brand: %s" % (cur_bead.name, cur_bead.code,
-              cur_bead.brand, new_brand))
+                                                                                       cur_bead.brand, new_brand))
     else:
-        if dist == float(0):
-            print("The exact %s bead is: %s [%s]\n" % (new_bead.brand.capitalize(), new_bead.name.capitalize(),
-                                                       new_bead.code.upper()))
-        else:
-            print("The equivalent %s bead is: %s [%s] by a distance of: %d (smaller number is better)\n" %
-                  (new_bead.brand.capitalize(), new_bead.name.title(), new_bead.code.upper(), dist))
+        for i in range(len(matches)):
+            bead, dist = matches[i]
+            print("%d.: (%-10s) (Distance: %3d) %20s [%7s]" % (i+1, bead.brand.capitalize(), dist,
+                                                               bead.name.capitalize(), bead.code.upper()))
+    print("\n")
 
 
 def cost_of_sprite(beads: [Bead]):
