@@ -1,0 +1,5 @@
+venv/
+.idea/
+data/*.png
+__pycache__
+dist/
