@@ -3,3 +3,4 @@ venv/
 data/*.png
 __pycache__
 dist/
+!data/example.png

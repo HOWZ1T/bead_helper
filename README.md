@@ -8,3 +8,6 @@ The goal is to help with the planning and resource cost of Perler (Fuse) Bead pr
 # Dataset Source
 The dataset was sourced from [here.](https://docs.google.com/spreadsheets/d/1f988o68HDvk335xXllJD16vxLBuRcmm3vg6U9lVaYpA)
 Created by: (Reddit User) [u/LThanda](https://www.reddit.com/user/LThanda)
+
+# Example
+![alt text](data/example.png "Example of the program running.")
